@@ -23,6 +23,8 @@ export const expressionsDiagnosticsSource = "arm-template (expressions)";
 // Source string for errors related to the language server starting up or failing
 export const languageServerStateSource = "arm-template";
 
+export const dotnetVersion: string = "2.2";
+
 export const configPrefix = 'azureResourceManagerTools'; // Prefix for user settings
 
 export namespace configKeys {

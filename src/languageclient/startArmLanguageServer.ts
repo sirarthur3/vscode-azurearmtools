@@ -18,7 +18,6 @@ import { WrappedErrorHandler } from './WrappedErrorHandler';
 
 const languageServerDllName = 'Microsoft.ArmLanguageServer.dll';
 const defaultTraceLevel = 'Warning';
-const dotnetVersion = '2.2';
 
 export enum LanguageServerState {
     NotStarted,
@@ -174,7 +173,7 @@ async function acquireDotnet(dotnetExePath: string): Promise<string> {
             actionContext.telemetry.properties.overriddenDotNetExePath = "false";
 
             ext.outputChannel.appendLine(`This extension requires .NET Core for full functionality.`);
-            dotnetExePath = await dotnetAcquire(dotnetVersion, actionContext.telemetry.properties, actionContext.errorHandling.issueProperties);
+            dotnetExePath = await dotnetAcquire("3.0"/*asdf dotnetVersion*/, actionContext.telemetry.properties, actionContext.errorHandling.issueProperties);
             if (!(await isFile(dotnetExePath))) {
                 throw new Error(`The path returned for .net core does not exist: ${dotnetExePath}`);
             }
