@@ -172,7 +172,7 @@ async function getLanguageServer(): Promise<void> {
             'install',
             languageServerNugetPackage,
             '-Version', languageServerVersion,
-            '-Framework', 'netcoreapp2.2',
+            '-Framework', 'netcoreapp3.0',
             '-OutputDirectory', 'pkgs',
             //'-Verbosity', 'detailed',
             '-ExcludeVersion', // Keeps the package version from being included in the output folder name
@@ -191,7 +191,7 @@ async function getLanguageServer(): Promise<void> {
         console.log(`Removing ${languageServerRelativeFolderPath}`);
         rimraf.sync(languageServerRelativeFolderPath);
         console.log(`Copying language server binaries to ${languageServerRelativeFolderPath}`);
-        const srcPath = path.join(__dirname, 'pkgs', languageServerNugetPackage, 'lib', 'netcoreapp2.2');
+        const srcPath = path.join(__dirname, 'pkgs', languageServerNugetPackage, 'lib', 'netcoreapp3.0');
         let destPath = path.join(__dirname, languageServerRelativeFolderPath);
         fse.mkdirpSync(destPath);
         copyFolder(srcPath, destPath);

@@ -18,7 +18,7 @@ import { WrappedErrorHandler } from './WrappedErrorHandler';
 
 const languageServerDllName = 'Microsoft.ArmLanguageServer.dll';
 const defaultTraceLevel = 'Warning';
-const dotnetVersion = '2.2';
+const dotnetVersion = '3.0';
 
 export enum LanguageServerState {
     NotStarted,
