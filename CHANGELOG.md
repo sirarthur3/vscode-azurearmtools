@@ -2,13 +2,32 @@
 
 All notable changes to the "vscode-azurearmtools" extension will be documented in this file.
 
+## Version 0.8.4 (2020-02-05)
+
+### Added
+
+- Added new snippets for subscription, management group and tenant deployments scaffolding (`arm!s`, `arm!mg` and `arm!t`) [#449](https://github.com/microsoft/vscode-azurearmtools/issues/449)
+
+### Fixed
+
+- An error in loading ARM schemas from 2014 Preview [#438](https://github.com/microsoft/vscode-azurearmtools/issues/438)
+- Fallback on cached schemas on Linux and MacOS
+- arm! and armp! snippets are using old \$schema (thanks Nils Hedström @nilshedstrom!) [#432](https://github.com/microsoft/vscode-azurearmtools/issues/432)
+- Fixed icons for "Functions" entry in treeview (thanks Nils Hedström @nilshedstrom!) [#427](https://github.com/microsoft/vscode-azurearmtools/pull/427)
+- Assertion Failed when opening ARM Templates [#441](https://github.com/microsoft/vscode-azurearmtools/issues/441)
+- Add optional customer survey
+- Updated web-app and web-app-deploy schema to 2018-11-01 [#451](https://github.com/microsoft/vscode-azurearmtools/issues/451)
+- "Format Document" and schema validation don't work against unsaved ARM templates [#464](https://github.com/microsoft/vscode-azurearmtools/issues/464)
+- Error downloading dotnet - VERSION_ID: unbound variable [#422](https://github.com/microsoft/vscode-azurearmtools/issues/422)
+- Engineering improvements
+
 ## Version 0.8.3 (2019-12-16)
 
 ### Fixed
 
 - Cannot install extension with "'" in username/users path [#356](https://github.com/microsoft/vscode-azurearmtools/issues/356)
-- Error updating $schema if editor no longer has focus [#389](https://github.com/microsoft/vscode-azurearmtools/issues/389)
-- Should only ask once per vscode session to upgrade $schema if Not Now chosen [#391](https://github.com/microsoft/vscode-azurearmtools/issues/391)
+- Error updating \$schema if editor no longer has focus [#389](https://github.com/microsoft/vscode-azurearmtools/issues/389)
+- Should only ask once per vscode session to upgrade \$schema if Not Now chosen [#391](https://github.com/microsoft/vscode-azurearmtools/issues/391)
 - We shouldn't allow renaming built-in functions [#385](https://github.com/microsoft/vscode-azurearmtools/issues/385)
 - Update API Version on Nested Deployment Snippet [#402](https://github.com/microsoft/vscode-azurearmtools/issues/402)
 - Improve diagnostics for dotnet acquisition failures
@@ -39,6 +58,7 @@ All notable changes to the "vscode-azurearmtools" extension will be documented i
 ### Added
 
 - Support for variable iteration ("variable COPY blocks") [(ARM template variable copy block highlighting error #30)](https://github.com/microsoft/vscode-azurearmtools/issues/30), see <https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-multiple#variable-iteration>
+- Support for variable iteration ("variable COPY blocks") [(ARM template variable copy block highlighting error #30)](https://github.com/microsoft/vscode-azurearmtools/issues/30), see https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-multiple#variable-iteration
 - Added `azureResourceManagerTools.languageServer.dotnetExePath` setting to allow using an existing dotnet installation as a work-around for installation issues
 - Added expression metadata for the environment() function [#344](https://github.com/microsoft/vscode-azurearmtools/pull/344)
 - Do not validate schema against properties containing expressions
@@ -47,7 +67,7 @@ All notable changes to the "vscode-azurearmtools" extension will be documented i
   - ~~Dependency checks~~
   - ~~Template function checks~~
 - Support for all root-level Azure schemas
-- Completion for $schema now shows only root-level schemas
+- Completion for \$schema now shows only root-level schemas
 - Query user to update to latest schema [#368](https://github.com/microsoft/vscode-azurearmtools/pull/368)
   - Can be completely disabled via `azureResourceManagerTools.checkForLatestSchema` setting
 - Recognize deployment scope from the schema
@@ -81,12 +101,12 @@ All notable changes to the "vscode-azurearmtools" extension will be documented i
   - Rename user function parameters
   - Hover information
   - Signature help
-- Added basic snippet support. This makes Sam Cogan's [Azure Resource Manager Snippets](https://marketplace.visualstudio.com/items?itemName=samcogan.arm-snippets) extension no longer necessary when using this extension.  If you have snippet suggestions, you can add them to our [repo](https://github.com/microsoft/vscode-azurearmtools/issues).
+- Added basic snippet support. This makes Sam Cogan's [Azure Resource Manager Snippets](https://marketplace.visualstudio.com/items?itemName=samcogan.arm-snippets) extension no longer necessary when using this extension. If you have snippet suggestions, you can add them to our [repo](https://github.com/microsoft/vscode-azurearmtools/issues).
 - Hover information for JSON properties (outside of expressions)
 - ~~Fewer false positives~~
   - ~~We now allow string values to be automatically coerced to non-string types as appropriate (e.g., "false" can be used in place of false), as the ARM backend allows~~
   - ~~We now allow non-string values to be automatically coerced to string as appropriate (e.g. false can be used in place of "false")~~
-(This change was reverted in favor of providing a clearer error message.)
+    (This change was reverted in favor of providing a clearer error message.)
 - Add Find References for built-in template functions (e.g. click on "add" in an expression then right-click -> Find All References)
 
 ### Fixed
@@ -112,7 +132,7 @@ All notable changes to the "vscode-azurearmtools" extension will be documented i
 
 ### Added
 
-- 0.7.0 contains the first release of a new language service that we are creating specifically for Azure Resource Manager deployment template files.  Up to this point, the extension has been built on top of the built-in VS Code JSON language server.  This has caused some problems, including:
+- 0.7.0 contains the first release of a new language service that we are creating specifically for Azure Resource Manager deployment template files. Up to this point, the extension has been built on top of the built-in VS Code JSON language server. This has caused some problems, including:
   1. Deployment templates allow comments, unlike standard JSON files
   1. Deployment templates allow multi-line strings
   1. Deployment templates use case-insensitive properties
@@ -136,12 +156,14 @@ If you would like to suggest additional features, or for other comments or probl
 - Multi-line strings are now supported
 - Schema validation no longer reports false positives because of incorrectly-cased properties
 Examples:
+  Examples:
 
 ```json
   "parameters": {
     "dnsLabelPrefix": {
       "type": "String", << No longer flagged as incorrect
 ```
+
 ```json
     "resources": [
         {
@@ -181,7 +203,7 @@ Examples:
 ### Fixed
 
 - Extension does not load in older vscode versions:
-  - <https://github.com/Microsoft/vscode-azurearmtools/issues/206>
+  - https://github.com/Microsoft/vscode-azurearmtools/issues/206
 
 ## Version 0.5.0 (2019-02-26)
 
@@ -219,7 +241,7 @@ Examples:
   - [reference TLE signature intellisense out of date](https://github.com/Microsoft/vscode-azurearmtools/issues/32)
   - [CopyIndex with 2 arguments is considered an error](https://github.com/Microsoft/vscode-azurearmtools/issues/48)
   - [Unrecognized function name 'listCallbackUrl'](https://github.com/Microsoft/vscode-azurearmtools/issues/59)
-  - [listSecrets and generic list* functions not recognized](https://github.com/Microsoft/vscode-azurearmtools/issues/72)
+  - [listSecrets and generic list\* functions not recognized](https://github.com/Microsoft/vscode-azurearmtools/issues/72)
   - [listPackage function metadata is missing a description](https://github.com/Microsoft/vscode-azurearmtools/issues/69)
 
 ## Version 0.4.0 (02/01/2018)
